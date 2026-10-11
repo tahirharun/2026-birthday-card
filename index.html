@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday.exe 🎂</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BOOT SCREEN -->
+    <div class="boot-screen" id="bootScreen">
+        <div class="boot-terminal">
+            <div class="boot-title">BIRTHDAY_OS v2.0</div>
+            <div class="boot-output" id="bootOutput"></div>
+            <button id="startButton" class="start-button">[ ENTER BIRTHDAY.EXE ]</button>
+        </div>
+    </div>
+
+    <!-- PROCESSING SCREEN (shown after name + age) -->
+    <div class="boot-screen hidden" id="processScreen">
+        <div class="boot-terminal">
+            <div class="boot-title">BIRTHDAY_OS v2.0</div>
+            <div class="boot-output" id="processOutput"></div>
+            <div class="progress" id="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="background">
+        <div class="grid"></div>
+        <div class="stars"></div>
+    </div>
+
+    <main class="card" id="mainCard">
+
+        <div class="terminal-top">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">birthday.exe</span>
+        </div>
+
+        <div class="card-content">
+
+            <p class="code-line">
+                <span class="green-text">&gt;</span> system.startBirthday()
+            </p>
+
+            <h1>🎂 HAPPY BIRTHDAY 🎂</h1>
+
+            <p class="subtitle">You've received a special digital gift...</p>
+
+            <div class="gift-container" id="giftContainer">
+                <div class="gift" id="gift">
+                    <div class="gift-lid">
+                        <div class="lid-ribbon"></div>
+                    </div>
+                    <div class="gift-box">
+                        <div class="box-ribbon"></div>
+                    </div>
+                </div>
+                <p class="click-text">[ CLICK THE GIFT ]</p>
+            </div>
+
+            <section class="birthday-section" id="birthdaySection">
+
+                <p class="code-line">
+                    <span class="green-text">&gt;</span> gift.open()
+                </p>
+
+                <h2>🎁 ACCESS GRANTED 🎁</h2>
+
+                <p>Before we continue...</p>
+
+                <p class="question">Enter your name:</p>
+
+                <div class="name-input-container">
+                    <input type="text" id="nameInput" placeholder="Enter name"
+                           maxlength="20" autocomplete="off">
+                </div>
+
+                <p class="question">Enter your current age:</p>
+
+                <div class="age-input-container">
+                    <input type="number" id="ageInput" placeholder="Enter age" min="1" max="120">
+                    <button id="ageButton">OK</button>
+                </div>
+
+                <!-- Warnings for failed attempts 1 and 2 -->
+                <div class="warning-box" id="warningBox"></div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- CONGRATS POPUP -->
+    <div class="congrats-overlay" id="congratsOverlay">
+        <div class="congrats-box">
+            <div class="success-icon">✓</div>
+            <p class="access-text">ACCESS GRANTED</p>
+            <h2 id="congratsMessage">CONGRATS! 🎉</h2>
+            <p class="system-message">Birthday.exe completed successfully</p>
+            <button id="closeCongrats">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- RED ALERT (failed attempt 3 prank) -->
+    <div class="red-alert" id="redAlert">
+<pre class="alert-box" id="alertBox"></pre>
+        <div class="alert-log" id="alertLog"></div>
+        <button id="alertButton" style="display:none">[ ENTER YOUR NAME ]</button>
+    </div>
+
+    <div id="confetti"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
