@@ -145,12 +145,12 @@ const scareConfig = {
     age: {
         boxLines: [
             "WARNING: AGE NOT FOUND!",
-            "A HACKER COULD BE WATCHING! 👀",
+            "A HACKER COULD BE WATCHING!",
             "",
             "ENTER YOUR AGE TO CONTINUE."
         ],
         button: "[ ENTER YOUR AGE ]",
-        reveal: "> Now enter your age 🎂",
+        reveal: "> Now enter your age",
         input: ageInput
     }
 };
@@ -297,7 +297,6 @@ alertButton.addEventListener("click", dismissRedAlert);
 
 function checkAge() {
 
-    // ignore clicks while processing or while the scare is on screen
     if (processing || redAlert.classList.contains("show")) return;
 
     const name = nameInput.value.trim();
@@ -329,7 +328,6 @@ async function runProcessing(name, age) {
 
     const upperName = name.toUpperCase();
 
-    // Reset and show the processing screen
     processOutput.innerHTML = "";
     progressBar.style.width = "0%";
     processScreen.classList.remove("hidden");
@@ -368,13 +366,13 @@ async function runProcessing(name, age) {
     addLine(processOutput, "> GENERATING BIRTHDAY MESSAGE...");
     await wait(1000);
 
-    addLine(processOutput, `🎂 CONGRATULATIONS, ${upperName}!`);
+    addLine(processOutput, `CONGRATULATIONS, ${upperName}!`);
     await wait(1400);
     processScreen.classList.add("hidden");
     await wait(800);
 
     congratsMessage.textContent =
-        `CONGRATS ${upperName}! YOU'RE OFFICIALLY ${age}! 🎉`;
+        `CONGRATS ${upperName}! YOU'RE OFFICIALLY ${age}!`;
 
     congratsOverlay.classList.add("show");
     createConfetti();
