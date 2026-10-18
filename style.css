@@ -16,11 +16,6 @@ body {
     overflow-y: auto;
 }
 
-
-/* ========================================
-   BOOT + PROCESSING SCREENS
-======================================== */
-
 .boot-screen {
     position: fixed;
     inset: 0;
@@ -102,11 +97,6 @@ body {
     box-shadow: 0 0 20px #00ff88;
 }
 
-
-/* ========================================
-   PROGRESS BAR (processing screen)
-======================================== */
-
 .progress {
     margin-top: 20px;
     height: 8px;
@@ -123,11 +113,6 @@ body {
     box-shadow: 0 0 10px #00ff88;
     transition: width 1s linear;
 }
-
-
-/* ========================================
-   BACKGROUND
-======================================== */
 
 .background {
     position: fixed;
@@ -162,11 +147,6 @@ body {
     to   { transform: translateY(100px); }
 }
 
-
-/* ========================================
-   MAIN CARD
-======================================== */
-
 .card {
     width: min(90%, 650px);
     margin: auto;
@@ -186,11 +166,6 @@ body {
     from { opacity: 0; transform: scale(0.9); }
     to   { opacity: 1; transform: scale(1); }
 }
-
-
-/* ========================================
-   TERMINAL BAR
-======================================== */
 
 .terminal-top {
     height: 45px;
@@ -217,11 +192,6 @@ body {
     color: #7d9c90;
     font-size: 13px;
 }
-
-
-/* ========================================
-   CARD CONTENT
-======================================== */
 
 .card-content {
     padding: 45px 35px;
@@ -255,10 +225,6 @@ h1 {
     font-size: 15px;
 }
 
-
-/* ========================================
-   GIFT
-======================================== */
 
 .gift-container {
     margin-top: 40px;
@@ -330,11 +296,6 @@ h1 {
     box-shadow: 0 0 10px #00ff88;
 }
 
-
-/* ========================================
-   OPEN GIFT
-======================================== */
-
 .gift.open {
     transform: translateY(10px) scale(1.05);
 }
@@ -377,11 +338,6 @@ h1 {
     50% { opacity: 0.35; }
 }
 
-
-/* ========================================
-   BIRTHDAY SECTION
-======================================== */
-
 .birthday-section {
     display: none;
     margin-top: 35px;
@@ -411,11 +367,6 @@ h1 {
 .question {
     color: white !important;
 }
-
-
-/* ========================================
-   NAME + AGE INPUTS
-======================================== */
 
 .name-input-container {
     display: flex;
@@ -464,11 +415,6 @@ h1 {
         0 0 30px rgba(0, 255, 136, 0.4);
 }
 
-
-/* ========================================
-   FAILED ATTEMPT WARNINGS (1 + 2)
-======================================== */
-
 .warning-box {
     display: none;
     margin: 25px auto 0;
@@ -487,11 +433,6 @@ h1 {
 .warning-box.show {
     display: block;
 }
-
-
-/* ========================================
-   RED ALERT (attempt 3 prank)
-======================================== */
 
 .red-alert {
     position: fixed;
@@ -567,12 +508,10 @@ h1 {
     color: #1a0000;
     box-shadow: 0 0 20px #ff4d4d;
 }
-
 @keyframes redPulse {
     from { background: rgba(140, 0, 0, 0.94); }
     to   { background: rgba(70, 0, 0, 0.97); }
 }
-
 @keyframes screenShake {
     0%   { transform: translate(0, 0); }
     25%  { transform: translate(-6px, 4px); }
@@ -580,7 +519,6 @@ h1 {
     75%  { transform: translate(-4px, -3px); }
     100% { transform: translate(0, 0); }
 }
-
 @keyframes glitch {
     0%   { transform: translateX(0);    opacity: 1; }
     20%  { transform: translateX(-4px); opacity: 0.7; }
@@ -588,12 +526,6 @@ h1 {
     60%  { transform: translateX(-2px); opacity: 0.5; }
     100% { transform: translateX(0);    opacity: 1; }
 }
-
-
-/* ========================================
-   CONGRATS POPUP
-======================================== */
-
 .congrats-overlay {
     position: fixed;
     inset: 0;
@@ -667,18 +599,12 @@ h1 {
     margin-bottom: 25px;
 }
 
-
-/* ========================================
-   CONFETTI
-======================================== */
-
 #confetti {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 1200;
 }
-
 .confetti-piece {
     position: absolute;
     width: 8px;
@@ -690,11 +616,6 @@ h1 {
 @keyframes confettiFall {
     to { transform: translateY(110vh) rotate(720deg); }
 }
-
-
-/* ========================================
-   MOBILE
-======================================== */
 
 @media (max-width: 600px) {
 

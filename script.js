@@ -1,7 +1,3 @@
-// ========================================
-// ELEMENTS
-// ========================================
-
 const $ = id => document.getElementById(id);
 
 const bootScreen      = $("bootScreen");
@@ -29,10 +25,6 @@ const confetti        = $("confetti");
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 
-// ========================================
-// HELPER: ADD A TERMINAL LINE
-// ========================================
-
 function addLine(container, text) {
     const line = document.createElement("div");
     line.classList.add("boot-line");
@@ -40,11 +32,6 @@ function addLine(container, text) {
     container.appendChild(line);
     return line;
 }
-
-
-// ========================================
-// TERMINAL BOOT SEQUENCE
-// ========================================
 
 const bootMessages = [
     "> Initializing Birthday_OS...",
@@ -70,11 +57,6 @@ startButton.addEventListener("click", () => {
     bootScreen.classList.add("hidden");
 });
 
-
-// ========================================
-// OPEN GIFT
-// ========================================
-
 giftContainer.addEventListener("click", () => {
 
     if (gift.classList.contains("open")) return;
@@ -84,17 +66,11 @@ giftContainer.addEventListener("click", () => {
     const clickText = giftContainer.querySelector(".click-text");
     if (clickText) clickText.style.opacity = "0";
 
-    // Wait for the lid animation, then reveal the form
     setTimeout(() => {
         birthdaySection.classList.add("show");
         setTimeout(() => nameInput.focus(), 400);
     }, 700);
 });
-
-
-// ========================================
-// INPUT EVENTS
-// ========================================
 
 nameInput.addEventListener("keydown", event => {
     if (event.key === "Enter") ageInput.focus();
@@ -105,11 +81,6 @@ ageInput.addEventListener("keydown", event => {
 });
 
 ageButton.addEventListener("click", checkAge);
-
-
-// ========================================
-// SHAKE ANIMATION
-// ========================================
 
 function shake(element) {
     element.animate(
@@ -126,13 +97,8 @@ function shake(element) {
 }
 
 
-// ========================================
-// FAILED ATTEMPTS (1 + 2 = warnings, 3 = scare)
-// ========================================
-
 const MAX_ATTEMPTS = 3;
 
-// separate counters: 3 bad names OR 3 bad ages triggers the scare
 const failedAttempts = { name: 0, age: 0 };
 
 const warningIcons = ["🟢", "🟡"];
@@ -164,17 +130,16 @@ const warningMessages = {
     ]
 };
 
-// what the red screen says for each field
 const scareConfig = {
     name: {
         boxLines: [
             "WARNING: IDENTITY NOT FOUND!",
-            "A HACKER COULD BE WATCHING! 👀",
+            "A HACKER COULD BE WATCHING!",
             "",
             "ENTER YOUR NAME TO CONTINUE."
         ],
         button: "[ ENTER YOUR NAME ]",
-        reveal: "> Now enter your name 🎂",
+        reveal: "> Now enter your name",
         input: nameInput
     },
     age: {
@@ -217,11 +182,6 @@ function failAttempt(type, input, placeholder) {
     }
 }
 
-
-// ========================================
-// RED ALERT SCARE (attempt 3)
-// ========================================
-
 const originalTitle = document.title;
 let titleFlash = null;
 let currentScare = "name";
@@ -260,7 +220,6 @@ function playSiren() {
         osc.start(t);
         osc.stop(t + 4);
     } catch (e) {
-        // audio not available, the visuals still work
     }
 }
 
@@ -283,7 +242,6 @@ async function triggerRedAlert(type) {
     currentScare = type;
     const config = scareConfig[type];
 
-    // stop typing in the inputs behind the overlay
     if (document.activeElement) document.activeElement.blur();
 
     clearWarning();
@@ -297,15 +255,14 @@ async function triggerRedAlert(type) {
     startTitleFlash();
     if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 400]);
 
-    // totally fake, just random numbers
     const fakeIP = Array.from({ length: 4 }, () => Math.floor(Math.random() * 255)).join(".");
 
     const lines = [
         "> INTRUSION DETECTED...",
         `> TRACING IP... ${fakeIP}`,
-        "> ACCESSING CAMERA... 📷",
-        "> ACCESSING FILES... 📁",
-        "> HACKER HAS ENTERED THE SYSTEM 👀"
+        "> ACCESSING CAMERA...",
+        "> ACCESSING FILES...",
+        "> HACKER HAS ENTERED THE SYSTEM"
     ];
 
     for (const text of lines) {
@@ -313,15 +270,13 @@ async function triggerRedAlert(type) {
         await wait(900);
     }
 
-    // sudden blackout
     redAlert.classList.add("blackout");
     await wait(1500);
     redAlert.classList.remove("blackout", "scary");
     stopTitleFlash();
 
-    // reveal
     alertLog.innerHTML = "";
-    addLine(alertLog, "😂 JUST KIDDING!!");
+    addLine(alertLog, "JUST KIDDING!!");
     addLine(alertLog, "> No hackers. Just a birthday prank.");
     addLine(alertLog, config.reveal);
     alertButton.style.display = "block";
@@ -340,11 +295,6 @@ function dismissRedAlert() {
 
 alertButton.addEventListener("click", dismissRedAlert);
 
-
-// ========================================
-// CHECK NAME + AGE
-// ========================================
-
 function checkAge() {
 
     // ignore clicks while processing or while the scare is on screen
@@ -352,8 +302,6 @@ function checkAge() {
 
     const name = nameInput.value.trim();
     const age  = Number(ageInput.value);
-
-    // Invalid name
     if (!name) {
         failAttempt("name", nameInput, "Enter your name!");
         return;
@@ -362,7 +310,6 @@ function checkAge() {
     failedAttempts.name = 0;
     clearWarning();
 
-    // Invalid age
     if (!age || age < 1 || age > 120) {
         failAttempt("age", ageInput, "Enter a valid age!");
         return;
@@ -372,12 +319,6 @@ function checkAge() {
 
     runProcessing(name, age);
 }
-
-
-// ========================================
-// PROCESSING SEQUENCE (15 SECOND DELAY)
-// ========================================
-
 const COUNTDOWN_SECONDS = 15;
 
 let processing = false;
@@ -393,7 +334,6 @@ async function runProcessing(name, age) {
     progressBar.style.width = "0%";
     processScreen.classList.remove("hidden");
 
-    // --- Intro lines ---
     const intro = [
         "> INITIALIZING SYSTEM...",
         "> VERIFYING USER IDENTITY...",
@@ -406,14 +346,12 @@ async function runProcessing(name, age) {
         addLine(processOutput, text);
         await wait(500);
     }
-
     addLine(processOutput, "PROCESSING...");
     await wait(400);
 
     addLine(processOutput, "Please wait while the system completes initialization.");
     await wait(400);
 
-    // --- 15 second countdown with progress bar ---
     const counter = addLine(processOutput, "");
 
     for (let s = COUNTDOWN_SECONDS; s > 0; s--) {
@@ -422,11 +360,8 @@ async function runProcessing(name, age) {
             ((COUNTDOWN_SECONDS - s) / COUNTDOWN_SECONDS) * 100 + "%";
         await wait(1000);
     }
-
     counter.textContent = "0 seconds remaining... ✓";
     progressBar.style.width = "100%";
-
-    // --- Final lines ---
     addLine(processOutput, "> FINAL SEQUENCE COMPLETE.");
     await wait(700);
 
@@ -435,8 +370,6 @@ async function runProcessing(name, age) {
 
     addLine(processOutput, `🎂 CONGRATULATIONS, ${upperName}!`);
     await wait(1400);
-
-    // --- Hide processing screen, then show the popup ---
     processScreen.classList.add("hidden");
     await wait(800);
 
@@ -448,36 +381,19 @@ async function runProcessing(name, age) {
 
     processing = false;
 }
-
-
-// ========================================
-// CLOSE CONGRATS
-// ========================================
-
 function closePopup() {
     congratsOverlay.classList.remove("show");
     setTimeout(() => { confetti.innerHTML = ""; }, 400);
 }
-
 closeCongrats.addEventListener("click", closePopup);
-
-// Click outside the box
 congratsOverlay.addEventListener("click", event => {
     if (event.target === congratsOverlay) closePopup();
 });
-
-// ESC key
 document.addEventListener("keydown", event => {
     if (event.key === "Escape" && congratsOverlay.classList.contains("show")) {
         closePopup();
     }
 });
-
-
-// ========================================
-// CONFETTI
-// ========================================
-
 function createConfetti() {
 
     confetti.innerHTML = "";
